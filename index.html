@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moda Moderna | Tienda Online</title>
+    <!-- Tailwind CSS para el diseño moderno y responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Navegación Superior -->
+    <header class="dynamic-header shadow-sm sticky top-0 z-40 border-b border-gray-200/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer">
+                    <svg class="w-8 h-8 mr-2 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                    </svg>
+                    <span class="font-bold text-xl tracking-tight">Vang<span class="text-indigo-600">Wear</span></span>
+                </div>
+
+                <!-- Controles: Selector de Fondo y Carrito -->
+                <div class="flex items-center space-x-4">
+                    <!-- Selector de Fondo -->
+                    <div class="flex space-x-2 mr-4 border-r border-gray-300 pr-4">
+                        <button onclick="changeTheme('light')" class="w-6 h-6 rounded-full bg-gray-200 border-2 border-gray-400 focus:outline-none" title="Fondo Claro"></button>
+                        <button onclick="changeTheme('dark')" class="w-6 h-6 rounded-full bg-gray-800 border-2 border-gray-400 focus:outline-none" title="Fondo Oscuro"></button>
+                        <button onclick="changeTheme('warm')" class="w-6 h-6 rounded-full bg-amber-100 border-2 border-gray-400 focus:outline-none" title="Fondo Cálido"></button>
+                    </div>
+
+                    <!-- Botón del Carrito -->
+                    <button onclick="toggleCart()" class="relative p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                        <span id="cart-count" class="absolute top-0 right-0 bg-indigo-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center transform translate-x-1 -translate-y-1">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Banner Principal -->
+    <div class="relative bg-indigo-600 text-white overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=1600&q=80" alt="Fondo banner" class="w-full h-full object-cover opacity-20">
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">Nueva Colección de Temporada</h1>
+            <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 opacity-90">Descubre las últimas tendencias en moda. Diseños únicos creados para destacar tu estilo personal todos los días.</p>
+            <a href="#productos" class="inline-block bg-white text-indigo-600 font-semibold px-8 py-3 rounded-full hover:bg-gray-100 transition shadow-lg">Ver Productos</a>
+        </div>
+    </div>
+
+    <!-- Sección de Productos -->
+    <main id="productos" class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
+        <div class="flex justify-between items-center mb-10">
+            <h2 class="text-3xl font-bold">Nuestros Productos</h2>
+            <!-- Filtro simple (Visual) -->
+            <select class="bg-transparent border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <option>Todos</option>
+                <option>Hombre</option>
+                <option>Mujer</option>
+                <option>Accesorios</option>
+            </select>
+        </div>
+
+        <!-- Cuadrícula de Productos (Se llenará con JavaScript simulando PHP) -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Los productos se inyectan aquí -->
+        </div>
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="dynamic-header border-t border-gray-200/50 py-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center opacity-70">
+            <p>&copy; 2026 VangWear Tienda Online. Todos los derechos reservados.</p>
+            <p class="text-sm mt-2">Desarrollado con HTML, CSS, JS (Listo para PHP)</p>
+        </div>
+    </footer>
+
+    <!-- Overlay oscuro para el carrito -->
+    <div id="cart-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity" onclick="toggleCart()"></div>
+
+    <!-- Sidebar del Carrito -->
+    <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full sm:w-96 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col border-l border-gray-200/20">
+        <div class="p-6 border-b border-gray-200/20 flex justify-between items-center">
+            <h3 class="text-xl font-bold flex items-center">
+                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                Tu Carrito
+            </h3>
+            <button onclick="toggleCart()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        
+        <!-- Lista de items en el carrito -->
+        <div id="cart-items" class="flex-grow p-6 overflow-y-auto">
+            <p class="text-center opacity-60 mt-10" id="empty-cart-msg">Tu carrito está vacío.</p>
+            <!-- Items del carrito se inyectan aquí -->
+        </div>
+
+        <!-- Total y Checkout -->
+        <div class="p-6 border-t border-gray-200/20 bg-black/5">
+            <div class="flex justify-between items-center mb-4">
+                <span class="font-bold text-lg">Total:</span>
+                <span id="cart-total" class="font-bold text-2xl text-indigo-600">$0.00</span>
+            </div>
+            <button onclick="checkout()" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-lg hover:bg-indigo-700 transition shadow-md flex justify-center items-center">
+                Proceder al Pago
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Contenedor de notificaciones -->
+    <div id="toast-container"></div>
+    <script src="src/index.js"></script>
+</body>
+</html>
