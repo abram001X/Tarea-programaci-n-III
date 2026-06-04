@@ -10,114 +10,115 @@
 </head>
 <body class="min-h-screen flex flex-col">
 
-    <!-- Navegación Superior -->
-    <header class="dynamic-header shadow-sm sticky top-0 z-40 border-b border-gray-200/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center cursor-pointer">
-                    <svg class="w-8 h-8 mr-2 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                    </svg>
-                    <span class="font-bold text-xl tracking-tight">Vang<span class="text-indigo-600">Wear</span></span>
+    <!-- NAVEGACIÓN -->
+    <header class="dynamic-header shadow-md sticky top-0 z-40 transition-colors duration-400">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center space-x-2">
+                <div class="bg-indigo-600 p-1.5 rounded-lg">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                </div>
+                <span class="font-bold text-xl tracking-tighter">VANG<span class="text-indigo-600">WEAR</span></span>
+            </div>
+
+            <!-- Acciones -->
+            <div class="flex items-center space-x-3">
+                <!-- Temas -->
+                <div class="hidden md:flex space-x-1 px-3 border-r border-gray-300">
+                    <button onclick="changeTheme('light')" class="w-5 h-5 rounded-full bg-gray-200 border border-gray-400" title="Claro"></button>
+                    <button onclick="changeTheme('dark')" class="w-5 h-5 rounded-full bg-gray-800 border border-gray-400" title="Oscuro"></button>
+                    <button onclick="changeTheme('warm')" class="w-5 h-5 rounded-full bg-orange-200 border border-gray-400" title="Cálido"></button>
                 </div>
 
-                <!-- Controles: Selector de Fondo y Carrito -->
-                <div class="flex items-center space-x-4">
-                    <!-- Selector de Fondo -->
-                    <div class="flex space-x-2 mr-4 border-r border-gray-300 pr-4">
-                        <button onclick="changeTheme('light')" class="w-6 h-6 rounded-full bg-gray-200 border-2 border-gray-400 focus:outline-none" title="Fondo Claro"></button>
-                        <button onclick="changeTheme('dark')" class="w-6 h-6 rounded-full bg-gray-800 border-2 border-gray-400 focus:outline-none" title="Fondo Oscuro"></button>
-                        <button onclick="changeTheme('warm')" class="w-6 h-6 rounded-full bg-amber-100 border-2 border-gray-400 focus:outline-none" title="Fondo Cálido"></button>
-                    </div>
+                <!-- Botón Login -->
+                <button onclick="toggleModal('login-modal')" class="flex items-center space-x-1 px-4 py-2 rounded-lg hover:bg-black/5 transition font-medium">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                    <span>Entrar</span>
+                </button>
 
-                    <!-- Botón del Carrito -->
-                    <button onclick="toggleCart()" class="relative p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
-                        <span id="cart-count" class="absolute top-0 right-0 bg-indigo-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center transform translate-x-1 -translate-y-1">0</span>
-                    </button>
-                </div>
+                <!-- Carrito -->
+                <button onclick="toggleCart()" class="relative p-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition shadow-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">0</span>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- Banner Principal -->
-    <div class="relative bg-indigo-600 text-white overflow-hidden">
-        <div class="absolute inset-0">
-            <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=1600&q=80" alt="Fondo banner" class="w-full h-full object-cover opacity-20">
+    <!-- HERO -->
+    <section class="relative h-[400px] flex items-center justify-center text-white text-center bg-gray-900">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80" class="absolute inset-0 w-full h-full object-cover opacity-40">
+        <div class="relative z-10 px-4">
+            <h1 class="text-5xl font-black mb-4 uppercase tracking-tighter">Estilo sin límites</h1>
+            <p class="text-lg opacity-90 mb-6">Explora nuestra colección exclusiva de temporada.</p>
+            <a href="#tienda" class="bg-indigo-600 px-8 py-3 rounded-full font-bold hover:bg-indigo-500 transition shadow-xl">Comprar ahora</a>
         </div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">Nueva Colección de Temporada</h1>
-            <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 opacity-90">Descubre las últimas tendencias en moda. Diseños únicos creados para destacar tu estilo personal todos los días.</p>
-            <a href="#productos" class="inline-block bg-white text-indigo-600 font-semibold px-8 py-3 rounded-full hover:bg-gray-100 transition shadow-lg">Ver Productos</a>
-        </div>
-    </div>
+    </section>
 
-    <!-- Sección de Productos -->
-    <main id="productos" class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
-        <div class="flex justify-between items-center mb-10">
-            <h2 class="text-3xl font-bold">Nuestros Productos</h2>
-            <!-- Filtro simple (Visual) -->
-            <select class="bg-transparent border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                <option>Todos</option>
-                <option>Hombre</option>
-                <option>Mujer</option>
-                <option>Accesorios</option>
-            </select>
+    <!-- TIENDA -->
+    <main id="tienda" class="max-w-7xl mx-auto px-4 py-12 w-full">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
+            <h2 class="text-3xl font-black">PRODUCTOS</h2>
+            
+            <!-- SELECTOR CORREGIDO -->
+            <div class="flex items-center space-x-2">
+                <span class="text-sm font-bold opacity-60">Filtrar por:</span>
+                <select class="dynamic-input border rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-indigo-500 font-medium">
+                    <option value="todos">Todos los estilos</option>
+                    <option value="hombre">Colección Hombre</option>
+                    <option value="mujer">Colección Mujer</option>
+                    <option value="accesorios">Accesorios</option>
+                </select>
+            </div>
         </div>
 
-        <!-- Cuadrícula de Productos (Se llenará con JavaScript simulando PHP) -->
         <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <!-- Los productos se inyectan aquí -->
+            <!-- Inyectado por JS -->
         </div>
     </main>
 
-    <!-- Pie de página -->
-    <footer class="dynamic-header border-t border-gray-200/50 py-8 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 text-center opacity-70">
-            <p>&copy; 2026 VangWear Tienda Online. Todos los derechos reservados.</p>
-            <p class="text-sm mt-2">Desarrollado con HTML, CSS, JS (Listo para PHP)</p>
-        </div>
-    </footer>
-
-    <!-- Overlay oscuro para el carrito -->
-    <div id="cart-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity" onclick="toggleCart()"></div>
-
-    <!-- Sidebar del Carrito -->
-    <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full sm:w-96 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col border-l border-gray-200/20">
-        <div class="p-6 border-b border-gray-200/20 flex justify-between items-center">
-            <h3 class="text-xl font-bold flex items-center">
-                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-                Tu Carrito
-            </h3>
-            <button onclick="toggleCart()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-        </div>
-        
-        <!-- Lista de items en el carrito -->
-        <div id="cart-items" class="flex-grow p-6 overflow-y-auto">
-            <p class="text-center opacity-60 mt-10" id="empty-cart-msg">Tu carrito está vacío.</p>
-            <!-- Items del carrito se inyectan aquí -->
-        </div>
-
-        <!-- Total y Checkout -->
-        <div class="p-6 border-t border-gray-200/20 bg-black/5">
-            <div class="flex justify-between items-center mb-4">
-                <span class="font-bold text-lg">Total:</span>
-                <span id="cart-total" class="font-bold text-2xl text-indigo-600">$0.00</span>
-            </div>
-            <button onclick="checkout()" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-lg hover:bg-indigo-700 transition shadow-md flex justify-center items-center">
-                Proceder al Pago
-                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-            </button>
+    <!-- MODAL LOGIN -->
+    <div id="login-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center px-4">
+        <div class="modal-overlay absolute inset-0" onclick="toggleModal('login-modal')"></div>
+        <div class="dynamic-card relative w-full max-w-md rounded-2xl shadow-2xl overflow-hidden p-8">
+            <h3 class="text-2xl font-black mb-6">BIENVENIDO</h3>
+            <form onsubmit="event.preventDefault(); alert('Simulación de inicio de sesión exitosa'); toggleModal('login-modal');" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase opacity-60 mb-1">Email</label>
+                    <input type="email" required class="dynamic-input w-full border rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-indigo-500" placeholder="usuario@ejemplo.com">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase opacity-60 mb-1">Contraseña</label>
+                    <input type="password" required class="dynamic-input w-full border rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-indigo-500" placeholder="••••••••">
+                </div>
+                <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-xl hover:bg-indigo-700 transition">Iniciar Sesión</button>
+                <p class="text-center text-sm opacity-60 mt-4">¿No tienes cuenta? <a href="#" class="text-indigo-500 font-bold">Regístrate</a></p>
+            </form>
         </div>
     </div>
 
-    <!-- Contenedor de notificaciones -->
-    <div id="toast-container"></div>
-    <script src="src/index.js"></script>
+    <!-- CARRITO SIDEBAR (Simplificado) -->
+    <div id="cart-overlay" class="fixed inset-0 bg-black/50 z-40 hidden" onclick="toggleCart()"></div>
+    <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full sm:w-96 dynamic-card z-50 transform translate-x-full transition-transform duration-300 p-6 flex flex-col shadow-2xl">
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-2xl font-black">CARRITO</h2>
+            <button onclick="toggleCart()" class="p-2 rounded-full hover:bg-black/5">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        <div id="cart-items" class="flex-grow overflow-y-auto">
+            <!-- Items -->
+        </div>
+        <div class="border-t border-gray-200/20 pt-6 mt-4">
+            <div class="flex justify-between items-center mb-6">
+                <span class="font-bold">Total estimado:</span>
+                <span id="cart-total" class="text-2xl font-black text-indigo-600">$0.00</span>
+            </div>
+            <button class="w-full bg-indigo-600 text-white font-bold py-4 rounded-xl hover:bg-indigo-700 transition">PAGAR AHORA</button>
+        </div>
+    </div>
+
+    <div id="toast-container" class="fixed bottom-6 right-6 z-[60]"></div>
+ <script src="src/index.js" type="module"></script>
 </body>
 </html>
