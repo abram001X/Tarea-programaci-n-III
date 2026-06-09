@@ -30,25 +30,25 @@
           <p class="subtitle">Completa tus datos y empieza a comprar con estilo.</p>
         </div>
 
-        <form class="registro-form">
+        <form class="registro-form" id="registro-form">
           <label>
             Nombre completo
-            <input type="text" name="name" placeholder="Tu nombre" required />
+            <input type="text" name="name" placeholder="Tu nombre" id="nameReg" required />
           </label>
 
           <label>
             Correo electrónico
-            <input type="email" name="email" placeholder="usuario@ejemplo.com" required />
+            <input type="email" name="email" placeholder="usuario@ejemplo.com" id="emailReg" required />
           </label>
 
           <label>
             Contraseña
-            <input type="password" name="password" placeholder="Mínimo 6 caracteres" required />
+            <input type="password" name="password" placeholder="Mínimo 6 caracteres" id="passwordReg" required />
           </label>
 
           <label>
             Confirmar contraseña
-            <input type="password" name="confirmPassword" placeholder="Repite tu contraseña" required />
+            <input type="password" name="confirmPassword" id="confirmPass" placeholder="Repite tu contraseña" required />
           </label>
 
           <button type="submit" class="btn-register">Crear cuenta</button>
@@ -59,4 +59,5 @@
     </section>
   </main>
 </body>
+<script src="src/register.js" type="module"></script>
 </html>

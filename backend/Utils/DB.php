@@ -24,7 +24,7 @@ class DB
         $getDb = file_get_contents($this->directory);
         $dataBase = json_decode($getDb, true);
         if (is_array($dataBase)) {
-            $validate = $this->validateUser($user, $dataBase["users"]);
+            $validate = $this->validateUser($user, $dataBase);
             if ($validate) {
                 $dataBase["users"][] = $user;
             } else {
@@ -42,8 +42,8 @@ class DB
         $res =  [
             "message" => "Error, datos no válidos"
         ];
-        foreach ($dataBase["users"] as $users) {
-            if ($users["email"] == $user["email"] && $users["password"] == $user["password"]) { //Realizar esto en DB class
+        foreach ($dataBase["users"] as $users) { 
+            if ($users["email"] == $user["email"] && $users["password"] == $user["password"]) { //Realizar esto en DB class  !!!!!
                 $res = [
                     "message" => "Usuario logeado con éxito: ",
                     "name" => $users["name"]
@@ -56,8 +56,9 @@ class DB
     private function validateUser($user = [], $dataBase = [])
     { //recorrer array
         $isValid = true;
-        foreach ($dataBase as $value) {
-            if ($user["email"] == $value["email"]) {
+        foreach ($dataBase["users"] as $value) {// !!!! !
+            if ($user["email"] 
+            == $value["email"]) {
                 $isValid = false;
             }
         }

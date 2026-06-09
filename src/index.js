@@ -21,23 +21,26 @@ import { getproducts } from "./lib/api.js";
         }
 
         // Temas
-        function changeTheme(theme) {
-            document.body.classList.remove('theme-dark', 'theme-warm');
-            if(theme !== 'light') document.body.classList.add('theme-' + theme);
-            localStorage.setItem('theme', theme);
+        function changeTheme() {
+            const butts = document.querySelectorAll(".butt-theme")
+            console.log("hola pa")
+            butts.forEach(comp=>{
+                comp.addEventListener("click",()=>{
+                    const theme = comp.id
+                    document.body.classList.remove('theme-dark', 'theme-warm');
+                    if(theme !== 'light') document.body.classList.add('theme-' + theme);
+                    localStorage.setItem('theme', theme);
+                })
+            })
+            
         }
 
-        // Modales y UI
-        function toggleModal(id) {
-            document.getElementById(id).classList.toggle('hidden');
-        }
-
-        function toggleCart() {
+        /*function toggleCart() {
             document.getElementById('cart-sidebar').classList.toggle('translate-x-full');
             document.getElementById('cart-overlay').classList.toggle('hidden');
         }
 
-        /*function addToCart(id) {
+            function addToCart(id) {
             const p = productos.find(x => x.id === id);
             carrito.push(p);
             updateCartUI();
@@ -68,16 +71,12 @@ import { getproducts } from "./lib/api.js";
             }
         }*/
 
-        function showToast(msj) {
-            const t = document.createElement('div');
-            t.className = "bg-indigo-600 text-white px-6 py-3 rounded-xl shadow-2xl mb-2 opacity-0 transform translate-y-4 transition-all toast";
-            t.innerText = msj;
-            document.getElementById('toast-container').appendChild(t);
-            setTimeout(() => t.remove(), 3000);
-        }
 
         window.onload = () => {
             render();
             // Cargar tema guardado
-            if(localStorage.getItem('theme')) changeTheme(localStorage.getItem('theme'));
+            changeTheme()
+            if(localStorage.getItem('theme')) changeTheme();
+
+            
         };

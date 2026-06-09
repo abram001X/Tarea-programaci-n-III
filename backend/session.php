@@ -29,20 +29,20 @@ if ($method == "POST") { // Register
 }
 
 if ($method == "GET") { // login
-    try {
-        $res = file_get_contents('php://input');
-        $data = json_decode($res, true);
-        $email = $data["email"];
-        $password = $data["password"];
-        $db = new DB($directory);
-        $get = $db->loginUser($data);
-        if($get["message"] == "Usuario logeado con éxito: "){
-            $data["name"] = $get["name"];
-            $user = new User($data);
-        } 
-        echo json_encode($get, true);
-    } catch (Exception $err) {
-        echo "error: $err";
+    if (isset($_GET["email"])) {
+        try {
+            $data = ["email" => $_GET["email"], "password" => $_GET["password"]];
+            $email = $data["email"];
+            $password = $data["password"];
+            $db = new DB($directory);
+            $get = $db->loginUser($data);
+            if ($get["message"] == "Usuario logeado con éxito: ") {
+                $data["name"] = $get["name"];
+                $user = new User($data);
+            }
+            echo json_encode($get, true);
+        } catch (Exception $err) {
+            echo "error: $err";
+        }
     }
 }
-
