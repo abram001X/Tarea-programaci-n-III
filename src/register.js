@@ -10,11 +10,12 @@ async function register(e) {
     const name = document.getElementById("nameReg").value
     const password = document.getElementById("passwordReg").value
     const passwordConfirm = document.getElementById("confirmPass").value
-    const body = { email, name, password } 
+    const body = { email, name, password }
     const res = await registerApi(body)
-    console.log(res)
+    if (res == "usuario registrado con exito") {
+        window.location.href = "index.php";
+    }
 }
-
 
 window.onload = () => {
     sendFormRegister()

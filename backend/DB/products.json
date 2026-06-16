@@ -55,6 +55,90 @@
             "precio": 39.99,
             "categoria": "Mujer",
             "imagen": "https://images.unsplash.com/photo-1584916201218-f4242ceb4809?auto=format&fit=crop&w=400&q=80"
+        },
+        {
+            "id": 8,
+            "nombre": "Camiseta Oversize Streetwear",
+            "precio": 29.99,
+            "categoria": "Unisex",
+            "imagen": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=400&q=80"
+        },
+        {
+            "id": 9,
+            "nombre": "Sudadera con Capucha Essential",
+            "precio": 45.00,
+            "categoria": "Hombre",
+            "imagen": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=400&q=80"
+        },
+        {
+            "id": 10,
+            "nombre": "Chaqueta de Cuero Vintage",
+            "precio": 119.99,
+            "categoria": "Mujer",
+            "imagen": "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=400&q=80"
+        },
+        {
+            "id": 11,
+            "nombre": "Pantalón Cargo Ajustable",
+            "precio": 59.99,
+            "categoria": "Hombre",
+            "imagen": "https://images.unsplash.com/photo-1517423738875-5ce310acd3da?auto=format&fit=crop&w=400&q=80"
+        },
+        {
+            "id": 12,
+            "nombre": "Top Crop de Punto",
+            "precio": 24.95,
+            "categoria": "Mujer",
+            "imagen": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=400&q=80"
+        },
+        {
+            "id": 13,
+            "nombre": "Gorra Trucker Bordada",
+            "precio": 19.99,
+            "categoria": "Accesorios",
+            "imagen": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=400&q=80"
+        },
+        {
+            "id": 14,
+            "nombre": "Jeans Rectos de Tiro Alto",
+            "precio": 49.99,
+            "categoria": "Mujer",
+            "imagen": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=400&q=80"
+        },
+        {
+            "id": 15,
+            "nombre": "Chaqueta Vaquera Oversize",
+            "precio": 65.00,
+            "categoria": "Unisex",
+            "imagen": "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=400&q=80"
+        },
+        {
+            "id": 16,
+            "nombre": "Vestido Midi de Lino",
+            "precio": 39.95,
+            "categoria": "Mujer",
+            "imagen": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=400&q=80"
+        },
+        {
+            "id": 17,
+            "nombre": "Camisa de Lino Manga Larga",
+            "precio": 42.50,
+            "categoria": "Hombre",
+            "imagen": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=400&q=80"
+        },
+        {
+            "id": 18,
+            "nombre": "Bermudas Chino Casual",
+            "precio": 34.99,
+            "categoria": "Hombre",
+            "imagen": "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&w=400&q=80"
+        },
+        {
+            "id": 19,
+            "nombre": "Chaqueta Bomber Impermeable",
+            "precio": 79.99,
+            "categoria": "Unisex",
+            "imagen": "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=400&q=80"
         }
     ]
 }

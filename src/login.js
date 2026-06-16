@@ -1,8 +1,8 @@
-import { initLogin } from "./lib/api.js"
+import {  initLogin } from "./lib/api.js"
 
 function sendFormLogin() {
     const formLogin = document.getElementById("loginForm")
-    formLogin.addEventListener("submit", login)
+    if(formLogin)formLogin.addEventListener("submit", login)
 }
 async function login(e) {
     e.preventDefault()
@@ -10,7 +10,9 @@ async function login(e) {
     const password = document.getElementById("password").value
 
     const res = await initLogin({ email, password })
-    console.log(res)
+    if (res == "Usuario logeado con éxito: ") {
+        window.location.href = "index.php";
+    }
 }
 
 

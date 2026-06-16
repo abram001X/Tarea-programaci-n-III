@@ -19,12 +19,16 @@ if ($method == "POST") { // Register
         $email = $data["email"];
         $name = $data["name"];
         $db = new DB($directory);
-        //Crear clase BD
+        // Crear clase BD
         // Realizar operaciones en la BD (verificar, válidar, guardar etc.) POO
         $post = $db->saveUser($data);
+        if ($post["message"] == "usuario registrado con exito") {
+            $_SESSION["name"] = $name;
+            $_SESSION["email"] = $email;
+        }
         echo json_encode($post, true);
     } catch (Exception $err) {
-        echo "error: $err";
+        echo json_encode(["message" => "error: $err"]);
     }
 }
 
@@ -39,10 +43,18 @@ if ($method == "GET") { // login
             if ($get["message"] == "Usuario logeado con éxito: ") {
                 $data["name"] = $get["name"];
                 $user = new User($data);
+                $_SESSION["name"] = $data["name"];
+                $_SESSION["email"] = $email;
             }
             echo json_encode($get, true);
         } catch (Exception $err) {
             echo "error: $err";
         }
     }
+}
+
+if ($method == "DELETE") { //cerrar sesion
+    $data = [];
+    session_unset();
+    session_destroy();
 }

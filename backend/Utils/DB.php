@@ -11,7 +11,7 @@ class DB
     {
         $this->directory = $directory;
     }
-    
+
     public function getProducts()
     {
         $getDb = file_get_contents($this->directory);
@@ -42,24 +42,52 @@ class DB
         $res =  [
             "message" => "Error, datos no válidos"
         ];
-        foreach ($dataBase["users"] as $users) { 
-            if ($users["email"] == $user["email"] && $users["password"] == $user["password"]) { //Realizar esto en DB class  !!!!!
+        foreach ($dataBase["users"] as $users) {
+            if ($users["email"] == $user["email"] && $users["password"] == $user["password"]) {
                 $res = [
                     "message" => "Usuario logeado con éxito: ",
                     "name" => $users["name"]
                 ];
-
+                break;
             }
         }
         return $res;
     }
+
+    public function addToCar()
+    {
+        try {
+            //Agregar a la base de datos
+        } catch (Exception $e) {
+            echo "Error: $e";
+        }
+    }
+    public function removeToCar()
+    {
+        try {
+            //eliminar de la base de datos
+        } catch (Exception $e) {
+            echo "Error: $e";
+        }
+    }
+    public function addBuying()
+    {
+        try {
+            //Agregar a la base de datos
+        } catch (Exception $e) {
+            echo "Error: $e";
+        }
+    }
     private function validateUser($user = [], $dataBase = [])
     { //recorrer array
         $isValid = true;
-        foreach ($dataBase["users"] as $value) {// !!!! !
-            if ($user["email"] 
-            == $value["email"]) {
+        foreach ($dataBase["users"] as $value) {
+            if (
+                $user["email"]
+                == $value["email"]
+            ) {
                 $isValid = false;
+                break;
             }
         }
         return $isValid;
