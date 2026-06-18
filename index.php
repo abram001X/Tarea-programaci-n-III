@@ -13,7 +13,6 @@ session_start();
 </head>
 
 <body class="min-h-screen flex flex-col">
-
     <!-- NAVEGACIÓN -->
     <header class="dynamic-header shadow-md sticky top-0 z-40 transition-colors duration-400">
         <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
@@ -99,7 +98,7 @@ session_start();
     <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full sm:w-96 dynamic-card z-50 transform translate-x-full transition-transform duration-300 p-6 flex flex-col shadow-2xl">
         <div class="flex justify-between items-center mb-8">
             <h2 class="text-2xl font-black">CARRITO</h2>
-            <button onclick="toggleCart()"  class="p-2 rounded-full hover:bg-black/5 butt-cl-cart">
+            <button onclick="toggleCart()" class="p-2 rounded-full hover:bg-black/5 butt-cl-cart">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
@@ -113,7 +112,7 @@ session_start();
                 <span class="font-bold">Total estimado:</span>
                 <span id="cart-total" class="text-2xl font-black text-indigo-600">$0.00</span>
             </div>
-            <button  class="w-full bg-indigo-600 text-white font-bold py-4 rounded-xl hover:bg-indigo-700 transition">PAGAR AHORA</button>
+            <button class="w-full bg-indigo-600 text-white font-bold py-4 rounded-xl hover:bg-indigo-700 transition">PAGAR AHORA</button>
         </div>
     </div>
 </body>
@@ -123,8 +122,8 @@ session_start();
         getProducts
     } from "./src/lib/api.js";
     let isLogin = "<?php
-        $isLogin = isset($_SESSION["name"]) && isset($_SESSION["email"]) ? "true" : null;
-        echo $isLogin; ?>"
+                    $isLogin = isset($_SESSION["name"]) && isset($_SESSION["email"]) ? "true" : null;
+                    echo $isLogin; ?>"
     isLogin = Boolean(isLogin)
     async function render() {
         //Se puede colocar también que se muestre un modal para iniciaar sesión si no está logeado.

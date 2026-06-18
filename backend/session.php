@@ -1,10 +1,11 @@
 <?php
 session_start();
+require __DIR__ . "/DB/DB.php";
 require __DIR__ . "/Utils/User.php";
-require __DIR__ . "/Utils/DB.php";
+require __DIR__ . "/Utils/DBController.php";
 
 use Utils\User;
-use Utils\DB;
+use Utils\DBController;
 
 header('Content-Type: application/json');
 $method = $_SERVER['REQUEST_METHOD'];
@@ -18,7 +19,7 @@ if ($method == "POST") { // Register
         $password = $data["password"];
         $email = $data["email"];
         $name = $data["name"];
-        $db = new DB($directory);
+        $db = new DBController($directory);
         // Crear clase BD
         // Realizar operaciones en la BD (verificar, válidar, guardar etc.) POO
         $post = $db->saveUser($data);
@@ -38,10 +39,10 @@ if ($method == "GET") { // login
             $data = ["email" => $_GET["email"], "password" => $_GET["password"]];
             $email = $data["email"];
             $password = $data["password"];
-            $db = new DB($directory);
+            $db = new DBController($directory);
             $get = $db->loginUser($data);
-            if ($get["message"] == "Usuario logeado con éxito: ") {
-                $data["name"] = $get["name"];
+            if ($get["message"] == "Usuario logeado con éxito: ") { //
+                $data["name"] = $get["name"]; //
                 $user = new User($data);
                 $_SESSION["name"] = $data["name"];
                 $_SESSION["email"] = $email;
