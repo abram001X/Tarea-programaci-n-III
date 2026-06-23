@@ -4,13 +4,13 @@
     box-sizing: border-box;
     font-family: 'Arial', sans-serif;
 }
-
-body {
-    background-color: #ffffff;
+.contenedor{
+    background-color: transparent; /* ✅ Antes era #ffffff */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: calc(100vh - 64px); /* Ajustado para no tapar el header */
+    padding: 20px;
 }
 
 .login-container {
@@ -103,23 +103,27 @@ body {
     font-weight: 600;
 }
 
+/* ✅ Labels usan el color de texto dinámico */
 .input-grupo label {
     display: block;
-    margin-bottom: 5px;
-    color: #666;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-color);
 }
-
+/* ✅ Inputs ahora usan variables de tema */
 .input-grupo input {
-     width: 100%;
+    width: 100%;
     padding: 12px 14px;
-    border: 1px solid rgba(156, 163, 175, 0.4);
+    border: 1px solid var(--input-border);
     border-radius: 8px;
     font-size: 15px;
-    background-color: transparent;
-    color: inherit;
+    background-color: var(--input-bg);
+    color: var(--input-text);
     outline: none;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, background-color 0.4s ease;
 }
+
 
 .input-grupo input:focus {
     border-color: #5d34ec;
@@ -147,10 +151,12 @@ body {
     transform: scale(0.98);
 }
 
+
 .footer-form {
     text-align: center;
     margin-top: 20px;
     font-size: 13px;
+    color: var(--text-color);
 }
 
 .footer-form a {

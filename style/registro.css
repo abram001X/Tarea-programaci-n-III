@@ -12,13 +12,14 @@
 * {
   box-sizing: border-box;
 }
+/* ❌ ELIMINADO: el :root con --bg fijo */
 
 body {
   margin: 0;
   min-height: 100vh;
   font-family: 'Inter', sans-serif;
-  color: var(--text);
-  background: var(--bg);
+  color: var(--text-color);
+  background-color: var(--bg-color); /* ✅ Antes: background: var(--bg); */
 }
 
 body::before {
@@ -44,9 +45,10 @@ body::before {
   grid-template-columns: 1.05fr 0.95fr;
   border-radius: 28px;
   overflow: hidden;
-  border: 1px solid var(--border);
-  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.45);
+  border: 1px solid var(--input-border);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(16px);
+  background-color: var(--card-bg); /* ✅ Añadido */
 }
 
 .registro-visual {
@@ -112,12 +114,13 @@ body::before {
 }
 
 .registro-form-panel {
-  background: var(--card);
+  background: var(--card-bg); /* ✅ Antes: var(--card) */
   padding: 36px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+
 
 .form-header {
   margin-bottom: 18px;
@@ -146,23 +149,23 @@ body::before {
   gap: 14px;
 }
 
+
 .registro-form label {
   display: grid;
   gap: 7px;
-  color: #eef2ff;
+  color: var(--text-color); /* ✅ Antes: #eef2ff */
   font-size: 0.95rem;
   font-weight: 600;
 }
-
 .registro-form input {
   width: 100%;
   padding: 13px 14px;
   border-radius: 12px;
-  border: 1px solid var(--border);
-  background: rgba(15, 23, 42, 0.82);
-  color: #f8fafc;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--input-text);
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.4s ease;
 }
 
 .registro-form input:focus {
@@ -191,16 +194,15 @@ body::before {
 .btn-register:active {
   transform: translateY(0);
 }
-
 .footer-form {
   margin-top: 16px;
   text-align: center;
-  color: #e0e7ff;
+  color: var(--text-color); /* ✅ Antes: #e0e7ff */
   font-size: 0.95rem;
 }
 
 .footer-form a {
-  color: #c7d2fe;
+  color: #5b5cf6;
   text-decoration: none;
   font-weight: 700;
 }

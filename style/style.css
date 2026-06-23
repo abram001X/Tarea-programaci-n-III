@@ -62,5 +62,8 @@
         .toast {
             animation: slideIn 0.3s forwards, fadeOut 0.3s forwards 2.5s;
         }
+        .title-logo{
+            cursor: pointer;
+        }
         @keyframes slideIn { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeOut { to { opacity: 0; transform: translateY(-10px); } }
