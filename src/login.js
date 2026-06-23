@@ -12,6 +12,8 @@ async function login(e) {
     const res = await initLogin({ email, password })
     if (res == "Usuario logeado con éxito: ") {
         window.location.href = "index.php";
+    } else {
+        //mostrar en UI: Error, datos no válidos
     }
 }
 

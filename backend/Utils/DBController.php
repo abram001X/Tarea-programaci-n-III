@@ -14,9 +14,15 @@ class DBController
 
     public function getProducts()
     {
-        $getDb = file_get_contents($this->directory);
-        $dataBase = json_decode($getDb, true);
-        return is_array($dataBase) ? $dataBase : [];
+        try {
+
+            $sql = 'SELECT * FROM products'; 
+            $products = DBConnect($sql, []); // posible modificación
+
+            return $products;
+        } catch (Exception $e) {
+            return ['message' => "Error: $e"];
+        }
     }
 
     public function saveUser($user = [])
@@ -25,13 +31,13 @@ class DBController
         $name = $user['name'];
         $password = $user['password'];
 
-        $validate = $this->validateUser([$email,$password]);
+        $validate = $this->validateUser([$email, $password]);
         echo $validate;
-        if($validate){
+        if ($validate) {
             $params = [$password, $name, $email];
             $sql = "INSERT INTO users (password, name, email) VALUES (?, ?, ?)";
             $res = DBConnect($sql, $params);
-            return ['message'=>'usuario registrado con exito'];
+            return ['message' => 'usuario registrado con exito'];
         }
         return ["message" => "Email ya existe"];
     }
@@ -43,13 +49,13 @@ class DBController
         $params = [$email, $password];
         $sql = "SELECT * FROM users WHERE email = ? AND password = ?";
         $res = DBConnect($sql, $params);
-        
+
         if (empty($res)) {
             return [
                 "message" => "Error, datos no válidos"
             ];
         }
-        
+
         return  [
             "message" => "Usuario logeado con éxito: ",
             "name" => $res[0]['name']

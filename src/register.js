@@ -14,6 +14,8 @@ async function register(e) {
     const res = await registerApi(body)
     if (res == "usuario registrado con exito") {
         window.location.href = "index.php";
+    } else {
+        // se escribe en el UI: Email ya existe
     }
 }
 
