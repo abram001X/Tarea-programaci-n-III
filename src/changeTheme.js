@@ -11,12 +11,19 @@ function changeTheme() {
     })
 
 }
-function navigateHome(){
+function navigateHome() {
     const titleLogo = document.querySelector('.title-logo')
-    titleLogo.addEventListener('click',(e)=>{
+    titleLogo.addEventListener('click', (e) => {
         location.href = 'index.php';
     })
 }
-
+function initTheme() {
+    const theme = localStorage.getItem('theme');
+    if (theme) {
+        document.body.classList.remove('theme-dark', 'theme-warm');
+        document.body.classList.add('theme-' + theme);
+    }
+}
+initTheme()
 changeTheme()
 navigateHome()
