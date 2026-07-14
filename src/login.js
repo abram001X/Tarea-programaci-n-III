@@ -13,7 +13,7 @@ async function login(e) {
     if (res == "Usuario logeado con éxito: ") {
         window.location.href = "index.php";
     } else {
-        //mostrar en UI: Error, datos no válidos
+        document.querySelector('.msg-login').textContent = res;
     }
 }
 

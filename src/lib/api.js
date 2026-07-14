@@ -9,7 +9,7 @@ export async function getProducts() {
         }
     }
     )
-    const { products } = await res.json()
+    const products = await res.json()
     return products;
 }
 

@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
     <!-- ✅ Agregados -->
+     <!-- Tailwind CSS para el diseño moderno y responsivo -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/stylelogin.css">
 </head>
@@ -35,7 +37,7 @@
                         <label for="password">Contraseña</label>
                         <input type="password" id="password" name="password" placeholder="Tu contraseña" required>
                     </div>
-                    
+                    <strong class="msg-login"></strong>
                     <button type="submit" class="btn-login">Ingresar</button>
                 </form>
                 <p class="footer-form">¿No tienes cuenta? <a href="registro.php">Regístrate aquí</a></p>

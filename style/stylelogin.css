@@ -1,3 +1,4 @@
+@import "tailwindcss";
 * {
     margin: 0;
     padding: 0;
@@ -167,4 +168,8 @@
 
 .footer-form a:hover {
     text-decoration: underline;
+}
+.msg-login{
+    color: red;
+    font-weight: 500;
 }

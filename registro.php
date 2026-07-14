@@ -6,7 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Registro | VANGWEAR</title>
   <!-- ✅ Agregados -->
-  <script src="https://cdn.tailwindcss.com"></script>
+   <!-- Tailwind CSS para el diseño moderno y responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style/style.css">
+   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -56,7 +59,7 @@
             Confirmar contraseña
             <input type="password" name="confirmPassword" id="confirmPass" placeholder="Repite tu contraseña" required />
           </label>
-
+          <strong class="msg-reg"></strong>
           <button type="submit" class="btn-register">Crear cuenta</button>
         </form>
 

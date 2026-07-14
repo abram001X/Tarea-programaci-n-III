@@ -15,10 +15,8 @@ class DBController
     public function getProducts()
     {
         try {
-
-            $sql = 'SELECT * FROM products'; 
+            $sql = 'SELECT * FROM productos'; 
             $products = DBConnect($sql, []); // posible modificación
-
             return $products;
         } catch (Exception $e) {
             return ['message' => "Error: $e"];
