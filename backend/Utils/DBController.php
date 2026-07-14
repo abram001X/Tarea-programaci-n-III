@@ -60,30 +60,7 @@ class DBController
         ];
     }
 
-    public function addToCar()
-    {
-        try {
-            //Agregar a la base de datos
-        } catch (Exception $e) {
-            echo "Error: $e";
-        }
-    }
-    public function removeToCar()
-    {
-        try {
-            //eliminar de la base de datos
-        } catch (Exception $e) {
-            echo "Error: $e";
-        }
-    }
-    public function addBuying()
-    {
-        try {
-            //Agregar a la base de datos
-        } catch (Exception $e) {
-            echo "Error: $e";
-        }
-    }
+    
     private function validateUser($params = [])
     { //recorrer array
         $sql = "SELECT * FROM users WHERE email = ? AND password = ?";
