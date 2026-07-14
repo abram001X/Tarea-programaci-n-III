@@ -67,9 +67,75 @@ session_start();
                 <span class="font-bold">Total estimado:</span>
                 <span id="cart-total" class="text-2xl font-black text-indigo-600">$0.00</span>
             </div>
-            <button class="w-full bg-indigo-600 text-white font-bold py-4 rounded-xl hover:bg-indigo-700 transition">PAGAR AHORA</button>
+            <button onclick="openCheckoutModal()" class="w-full bg-indigo-600 text-white font-bold py-4 rounded-xl hover:bg-indigo-700 transition">PAGAR AHORA</button>
         </div>
     </div>
+    <!-- ============================================ -->
+<!-- MODAL DE CONFIRMACIÓN DE COMPRA              -->
+<!-- ============================================ -->
+<div id="checkout-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] hidden opacity-0 transition-opacity duration-300"></div>
+
+<div id="checkout-modal" class="fixed inset-0 z-[70] hidden flex items-center justify-center p-4">
+    <div class="dynamic-card rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden transform scale-95 opacity-0 transition-all duration-300" id="checkout-content">
+        <!-- Header del modal -->
+        <div class="flex justify-between items-center p-6 border-b border-gray-200/20">
+            <div class="flex items-center gap-3">
+                <div class="bg-indigo-600 p-2 rounded-lg">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-black">Confirmar Compra</h2>
+            </div>
+            <button onclick="closeCheckoutModal()" class="p-2 rounded-full hover:bg-black/5 transition">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Contenido del modal -->
+        <div class="p-6 overflow-y-auto max-h-[60vh]">
+            <div id="checkout-items" class="space-y-4">
+                <!-- Items inyectados por JS -->
+            </div>
+        </div>
+
+        <!-- Footer del modal -->
+        <div class="border-t border-gray-200/20 p-6 bg-gray-50/5 dark:bg-gray-800/30">
+            <div class="flex justify-between items-center mb-6">
+                <span class="text-lg font-bold">Total a pagar:</span>
+                <span id="checkout-total" class="text-3xl font-black text-indigo-600">$0.00</span>
+            </div>
+            <div class="flex gap-3">
+                <button onclick="closeCheckoutModal()" class="flex-1 px-6 py-3 rounded-xl border-2 border-gray-300 dark:border-gray-600 font-bold hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                    Cancelar
+                </button>
+                <button onclick="confirmPurchase()" class="flex-1 px-6 py-3 rounded-xl bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition shadow-lg">
+                    Confirmar Compra
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de éxito -->
+<div id="success-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[80] hidden opacity-0 transition-opacity duration-300"></div>
+<div id="success-modal" class="fixed inset-0 z-[90] hidden flex items-center justify-center p-4">
+    <div class="dynamic-card rounded-2xl shadow-2xl w-full max-w-md p-8 text-center transform scale-95 opacity-0 transition-all duration-300" id="success-content">
+        <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce">
+            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+            </svg>
+        </div>
+        <h3 class="text-3xl font-black mb-3">¡Compra Exitosa!</h3>
+        <p class="text-lg opacity-70 mb-6">Tu pedido ha sido procesado correctamente.</p>
+        <p class="text-sm opacity-60 mb-6">Recibirás un correo con los detalles de tu compra.</p>
+        <button onclick="closeSuccessModal()" class="w-full px-6 py-3 rounded-xl bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition">
+            Continuar Comprando
+        </button>
+    </div>
+</div>
 </body>
 <script src="src/index.js" type="module"></script>
 <script src="src/changeTheme.js"></script>
@@ -242,6 +308,133 @@ const overlay = document.getElementById('cart-overlay');
 if (overlay) {
     overlay.addEventListener('click', toggleCart);
 }
+// ============================================
+// FUNCIONES DEL MODAL DE COMPRA
+// ============================================
+
+function openCheckoutModal() {
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    
+    if (carrito.length === 0) {
+        alert('Tu carrito está vacío');
+        return;
+    }
+    
+    // Renderizar items en el modal
+    const checkoutItems = document.getElementById('checkout-items');
+    checkoutItems.innerHTML = carrito.map(item => `
+        <div class="flex items-center gap-4 p-4 rounded-xl dynamic-card">
+            <img src="${item.imagen}" class="w-20 h-20 rounded-lg object-cover">
+            <div class="flex-grow">
+                <h4 class="font-bold text-lg">${item.nombre}</h4>
+                <p class="text-sm opacity-60">${item.categoria}</p>
+                <div class="flex items-center gap-2 mt-2">
+                    <span class="text-sm opacity-70">Cantidad:</span>
+                    <span class="font-bold">${item.cantidad}</span>
+                </div>
+            </div>
+            <div class="text-right">
+                <p class="text-indigo-600 font-black text-xl">$${(item.precio * item.cantidad).toFixed(2)}</p>
+                <p class="text-xs opacity-50">$${item.precio} c/u</p>
+            </div>
+        </div>
+    `).join('');
+    
+    // Calcular total
+    const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+    document.getElementById('checkout-total').innerText = `$${total.toFixed(2)}`;
+    
+    // Mostrar modal con animación
+    const overlay = document.getElementById('checkout-overlay');
+    const modal = document.getElementById('checkout-modal');
+    const content = document.getElementById('checkout-content');
+    
+    overlay.classList.remove('hidden');
+    modal.classList.remove('hidden');
+    
+    // Forzar reflow para que la animación funcione
+    setTimeout(() => {
+        overlay.classList.remove('opacity-0');
+        content.classList.remove('scale-95', 'opacity-0');
+        content.classList.add('scale-100', 'opacity-100');
+    }, 10);
+}
+
+function closeCheckoutModal() {
+    const overlay = document.getElementById('checkout-overlay');
+    const modal = document.getElementById('checkout-modal');
+    const content = document.getElementById('checkout-content');
+    
+    // Animación de salida
+    overlay.classList.add('opacity-0');
+    content.classList.remove('scale-100', 'opacity-100');
+    content.classList.add('scale-95', 'opacity-0');
+    
+    setTimeout(() => {
+        overlay.classList.add('hidden');
+        modal.classList.add('hidden');
+    }, 300);
+}
+
+function confirmPurchase() {
+    // Aquí podrías enviar los datos al servidor
+    // Por ahora, solo vaciamos el carrito
+    
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+    
+    // Simular procesamiento (puedes agregar un loading aquí)
+    console.log('Procesando compra:', { carrito, total });
+    
+    // Cerrar modal de confirmación
+    closeCheckoutModal();
+    
+    // Vaciar carrito después de un breve delay
+    setTimeout(() => {
+        localStorage.removeItem('carrito');
+        updateCartUI();
+        toggleCart(); // Cerrar el sidebar del carrito
+        
+        // Mostrar modal de éxito
+        showSuccessModal();
+    }, 400);
+}
+
+function showSuccessModal() {
+    const overlay = document.getElementById('success-overlay');
+    const modal = document.getElementById('success-modal');
+    const content = document.getElementById('success-content');
+    
+    overlay.classList.remove('hidden');
+    modal.classList.remove('hidden');
+    
+    setTimeout(() => {
+        overlay.classList.remove('opacity-0');
+        content.classList.remove('scale-95', 'opacity-0');
+        content.classList.add('scale-100', 'opacity-100');
+    }, 10);
+}
+
+function closeSuccessModal() {
+    const overlay = document.getElementById('success-overlay');
+    const modal = document.getElementById('success-modal');
+    const content = document.getElementById('success-content');
+    
+    overlay.classList.add('opacity-0');
+    content.classList.remove('scale-100', 'opacity-100');
+    content.classList.add('scale-95', 'opacity-0');
+    
+    setTimeout(() => {
+        overlay.classList.add('hidden');
+        modal.classList.add('hidden');
+    }, 300);
+}
+
+// Hacer funciones accesibles globalmente
+window.openCheckoutModal = openCheckoutModal;
+window.closeCheckoutModal = closeCheckoutModal;
+window.confirmPurchase = confirmPurchase;
+window.closeSuccessModal = closeSuccessModal;
 </script>
 
 </html>
