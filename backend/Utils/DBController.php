@@ -30,12 +30,11 @@ class DBController
         $password = $user['password'];
 
         $validate = $this->validateUser([$email, $password]);
-        echo $validate;
         if ($validate) {
             $params = [$password, $name, $email];
             $sql = "INSERT INTO users (password, name, email) VALUES (?, ?, ?)";
             $res = DBConnect($sql, $params);
-            return ['message' => 'usuario registrado con exito'];
+            return ["message" => "usuario registrado con exito"];
         }
         return ["message" => "Email ya existe"];
     }

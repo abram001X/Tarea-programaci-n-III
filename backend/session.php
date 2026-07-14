@@ -20,8 +20,6 @@ if ($method == "POST") { // Register
         $email = $data["email"];
         $name = $data["name"];
         $db = new DBController($directory);
-        // Crear clase BD
-        // Realizar operaciones en la BD (verificar, válidar, guardar etc.) POO
         $post = $db->saveUser($data);
         if ($post["message"] == "usuario registrado con exito") {
             $_SESSION["name"] = $name;
@@ -46,7 +44,9 @@ if ($method == "GET") { // login
                 $user = new User($data);
                 $_SESSION["name"] = $data["name"];
                 $_SESSION["email"] = $email;
+
             }
+            
             echo json_encode($get, true);
         } catch (Exception $err) {
             echo "error: $err";

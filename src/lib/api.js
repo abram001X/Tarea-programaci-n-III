@@ -1,4 +1,4 @@
-const url = "/tarea/backend/"; 
+const url = "/tarea/backend/";
 
 
 export async function getProducts() {
@@ -13,8 +13,8 @@ export async function getProducts() {
     return products;
 }
 
-export async function initLogin({email,password}) {
-    const res = await fetch(url + `session.php?email=${email}&password=${password}` , {
+export async function initLogin({ email, password }) {
+    const res = await fetch(url + `session.php?email=${email}&password=${password}`, {
         method: "GET",
         headers: {
             "Content-type": "application/json"
@@ -26,19 +26,26 @@ export async function initLogin({email,password}) {
 }
 
 export async function registerApi(body) {
-    const res = await fetch(url + `session.php` , {
-        method: "POST",
-        headers: {
-            "Content-type": "application/json"
-        },
-        body : JSON.stringify(body)
-    })
-    const { message } = await res.json()
-    return message;
+    try {
+        const res = await fetch(url + `session.php`, {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(body)
+        })
+        const { message } = await res.json()
+        console.log("abrahamxd")
+        console.log(message)
+        return message;
+    } catch (e) {
+        console.log(e.message)
+        return { message: e.message }
+    }
 }
 
 export async function closeSession() {
-    const res = await fetch(url + `session.php` , {
+    const res = await fetch(url + `session.php`, {
         method: "DELETE",
         headers: {
             "Content-type": "application/json"

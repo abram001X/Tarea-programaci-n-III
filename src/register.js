@@ -10,7 +10,9 @@ async function register(e) {
     const name = document.getElementById("nameReg").value
     const password = document.getElementById("passwordReg").value
     const passwordConfirm = document.getElementById("confirmPass").value
+    console.log(password, passwordConfirm)
     if (password == passwordConfirm) {
+        console.log("hola")
         const body = { email, name, password }
         const res = await registerApi(body)
         if (res == "usuario registrado con exito") {
