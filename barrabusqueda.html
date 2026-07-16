@@ -1,0 +1,34 @@
+<!-- TIENDA -->
+<main id="tienda" class="max-w-7xl mx-auto px-4 py-12 w-full">
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
+    
+    <h2 class="text-3xl font-black">PRODUCTOS</h2>
+
+    <!-- barra -->
+    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
+      <input 
+        type="text" 
+        id="buscador" 
+        placeholder="Buscar productos..." 
+        class="dynamic-input border rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-indigo-500 font-medium text-sm flex-grow md:w-64"
+      >
+      <div class="flex items-center space-x-2">
+        <span class="text-sm font-bold opacity-60 shrink-0">Filtrar por:</span>
+        <select 
+          id="filtro-categoria"
+          class="dynamic-input border rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-indigo-500 font-medium text-sm"
+        >
+          <option value="todos">Todos los estilos</option>
+          <option value="hombre">Colección Hombre</option>
+          <option value="mujer">Colección Mujer</option>
+          <option value="accesorios">Accesorios</option>
+        </select>
+      </div>
+    </div>
+
+  </div> 
+
+  <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    
+  </div>
+</main>
