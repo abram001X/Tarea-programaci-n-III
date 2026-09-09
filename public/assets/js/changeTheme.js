@@ -11,12 +11,6 @@ function changeTheme() {
     })
 
 }
-function navigateHome() {
-    const titleLogo = document.querySelector('.title-logo')
-    titleLogo.addEventListener('click', (e) => {
-        location.href = 'index.php';
-    })
-}
 function initTheme() {
     const theme = localStorage.getItem('theme');
     if (theme) {
@@ -26,4 +20,3 @@ function initTheme() {
 }
 initTheme()
 changeTheme()
-navigateHome()

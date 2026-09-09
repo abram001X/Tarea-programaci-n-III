@@ -31,20 +31,21 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` text NOT NULL
+  `password` text NOT NULL,
+  `role_id` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
-(1, 'Abraham', 'abraham@gmail.com', '123456'),
-(4, 'Camila', 'camila@gmail.com', 'hola123'),
-(5, 'abraham', 'mm@gmail.com', 'hola123'),
-(18, 'Adrian', 'adrian@gmail.com', 'hola123'),
-(21, 'Susana', 'susana@gmail.com', 'hola123'),
-(23, 'alan', 'alan@gmail.com', 'hola123');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `role_id`) VALUES
+(1, 'Abraham', 'abraham@gmail.com', '123456', 2),
+(4, 'Camila', 'camila@gmail.com', 'hola123', 3),
+(5, 'abraham', 'mm@gmail.com', 'hola123', 1),
+(18, 'Adrian', 'adrian@gmail.com', 'hola123', 4),
+(21, 'Susana', 'susana@gmail.com', 'hola123', 1),
+(23, 'alan', 'alan@gmail.com', 'hola123', 1);
 
 --
 -- Índices para tablas volcadas
