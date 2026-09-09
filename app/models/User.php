@@ -35,6 +35,12 @@ class User
         return !empty($db->query('SELECT id FROM users WHERE email = ?', [$email]));
     }
 
+    public static function updateRole($userId, $roleId)
+    {
+        $db = Database::getInstance();
+        $db->query('UPDATE users SET role_id = ? WHERE id = ?', [$roleId, $userId]);
+    }
+
     public static function create($name, $email, $password, $roleId = null)
     {
         $db = Database::getInstance();

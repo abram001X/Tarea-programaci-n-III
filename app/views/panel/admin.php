@@ -15,6 +15,11 @@
         <h1 class="text-3xl font-black mb-2">Panel Administrador</h1>
         <p class="text-lg opacity-70 mb-8">Listado de usuarios y sus roles.</p>
 
+        <div class="mb-8 flex flex-wrap gap-3">
+            <a href="<?= BASE_URL ?>/panel/productos" class="inline-block bg-indigo-600 text-white font-bold px-6 py-3 rounded-xl hover:bg-indigo-700 transition">Gestión de productos</a>
+            <a href="<?= BASE_URL ?>/panel/usuarios" class="inline-block bg-indigo-600 text-white font-bold px-6 py-3 rounded-xl hover:bg-indigo-700 transition">Gestión de usuarios</a>
+        </div>
+
         <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse">
                 <thead>
